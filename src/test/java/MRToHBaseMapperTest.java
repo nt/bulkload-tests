@@ -9,9 +9,9 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 
-public class FileToHBaseMapperTest {
+public class MRToHBaseMapperTest {
 	
-	Logger logger = Logger.getLogger(FileToHBaseMapperTest.class);
+	Logger logger = Logger.getLogger(MRToHBaseMapperTest.class);
 	
 	@Test
 	public void testJob() throws Exception {
@@ -25,7 +25,7 @@ public class FileToHBaseMapperTest {
 //		job.setWorkingDirectory(new Path("src/test/resources/"));
 		FileInputFormat.addInputPath(job, new Path("/tmp/file"));
 		
-		FileToHBaseMapper.configureJob(job);
+		MRToHBaseMapper.configureJob(job);
 		
 		job.waitForCompletion(true);
 		
@@ -37,7 +37,6 @@ public class FileToHBaseMapperTest {
 			logger.debug(String.format("%s %s", next.getRow(), next.getValue("data".getBytes(), "d".getBytes())));
 			System.out.println(String.format("%s %s", new String(next.getRow()), next.getValue("data".getBytes(), "d".getBytes())));
 		}
-		Thread.sleep(Long.MAX_VALUE);
 	}
 	
 }
